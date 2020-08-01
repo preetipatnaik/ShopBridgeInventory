@@ -1,0 +1,67 @@
+﻿@model ShopBridgeMVC.Models.Products
+
+@{
+    ViewBag.Title = "AddProduct";
+ 
+}
+<div>
+    <br/>
+    <h3>Add Products</h3>
+    <form id="myForm" method="post" enctype="multipart/form-data">
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductPrice, "{0:#.#}", new { htmlAttributes = new { @class = "form-control", @onkeypress = "return AllowNumbers(event); " } })
+                    @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductDesc, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductDesc, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductDesc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductImage, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input id="imgUpload" type="file" name="ImageFile" accept="image/jpg, image/png">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Save" id="btnSave" class="btn btn-success" style="width: 200px">
+                </div>
+            </div>
+        </div>
+    </form>
+    
+</div>
+
+<input type="hidden" id="hdnProductId" />
+<br/>
+<table id="tblProducts" class="table" cellpadding="0" cellspacing="0" border="1" style="border-collapse:collapse" data-order='[[ 0, "desc" ]]'>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<script src="~/Scripts/product.js"></script>

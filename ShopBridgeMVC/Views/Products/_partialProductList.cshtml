@@ -1,0 +1,112 @@
+﻿@model IPagedList<ShopBridgeMVC.Models.Products>
+@{
+    var totalPages = ViewBag.TotalPages;
+    var totalCount = ViewBag.Count;
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+
+<table class="table" style="margin:0px auto">
+    <thead>
+        <tr>
+            <th>
+                Sr No.
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Remove
+            </th>
+        </tr>
+    </thead>
+
+    @{int index = 1;}
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    @index
+                </td>
+                <td>
+                    <a href="@Url.Action("ProductDetail","Products", new { ProductId = item.ProductId })">
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                @if (item.ProductImage == null)
+                {
+                <td>
+                    <a href="@Url.Action("ProductDetail","Products", new { ProductId = item.ProductId })">
+                        <img src="~/Content/Images/no-image-icon-5.jpg" style="overflow: hidden; position: relative; width:100px; height:100px; " />
+                    </a>
+                </td>
+                }
+                else
+                {
+                <td>
+                    <a href="@Url.Action("ProductDetail","Products", new { ProductId = item.ProductId })">
+                        <img src="~/ProductImages/@item.ProductImage" style="overflow: hidden; position: relative; width:100px; height:100px;" />
+                    </a>
+                </td>
+                }
+                <td>
+                    <a href="#" class="btn btn-danger" onclick="ConfirmDelete(@item.ProductId)"><i class="glyphicon glyphicon-trash"></i></a>
+                </td>
+            </tr>
+        </tbody>
+        index++;
+    }
+    </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<ul>
+    @if (ViewBag.CurrentPage == 1)
+    {
+        <li class="pagination disabled">
+            <a href="#">Previous</a>
+        </li>
+    }
+    else
+    {
+        <li class="pagination">
+            <a href="/Products/GetProductList?page=@(ViewBag.CurrentPage -1)">Previous</a>
+        </li>
+    }
+
+    @if (ViewBag.CurrentPage == ViewBag.TotalPages)
+    {
+        <li class="pagination disabled">
+            <a href="#">Next</a>
+        </li>
+    }
+    else
+    {
+        <li class="pagination">
+            <a href="/Products/GetProductList?page=@(ViewBag.CurrentPage + 1)">Next</a>
+        </li>
+    }
+
+</ul>
+
+
+
+
+
+    
+
+    

@@ -1,0 +1,47 @@
+﻿@model ShopBridgeMVC.Models.Products
+
+@{
+    ViewBag.Title = "ProductDetail";
+}
+
+<br/>
+<h2>Product Detail</h2>
+<div style="margin-top: 85px">
+
+    <table class="table table-striped" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
+        <tr>
+            <td style="text-align:left"><b>Name :</b></td>
+            <td style="text-align:left">@Html.DisplayFor(model => model.ProductName)</td>
+        </tr>
+        <tr>
+            <td style="text-align:left"><b>Price :</b></td>
+            <td style="text-align:left">₹ @Html.DisplayFor(model => model.ProductPrice)</td>
+        </tr>
+        <tr>
+            <td style="text-align:left"><b>Description :</b></td>
+            <td style="text-align:left">@Html.DisplayFor(model => model.ProductDesc)</td>
+        </tr>
+        <tr>
+            <td style="text-align:left"><b>Image :</b></td>
+            @if (Model.ProductImage == null)
+            {
+                <td style="text-align:left"><img src="/Content/Images/no-image-icon-5.jpg" style="overflow: hidden; position: relative; width:100px; height:150px; " /></td>
+                
+            }
+            else
+            {
+                <td style="text-align:left"><img src="/ProductImages/@Model.ProductImage" style="overflow: hidden; position: relative; width:100px; height:150px; " /></td>
+                
+            }
+
+        </tr>
+    </table>
+
+
+
+
+    <div>
+        @Html.ActionLink("Go Back to Add Product Page", "AddProduct")
+    </div>
+</div>
+
