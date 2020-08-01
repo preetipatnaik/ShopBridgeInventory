@@ -14,8 +14,8 @@ Product Items from Database.
   * Run Visual Studio.
   * Open project and Select and Open ShopBridgeInventoryManagement.sln file. All of the files and folder will display your visual studio solution.
   * Otherwise you can Open ShopBridgeInventoryManagement folder and Build your own solution for this project.
-  * Attach InventoryMangement.mdf database to your MSSQL Database or visual studio local database.
-  * If you can not access database file.  Edit the connectionString from Web.config file of WEB API Solution and add AttachDbFilename=|Enter your database directory here InventoryMangement.mdf;
+  * Please attach the database file to your MSSQL Database from the email sent.
+  * Edit the connectionString from Web.config file of WEB API Solution and then Run the application.
 
 
     _Thanks_
